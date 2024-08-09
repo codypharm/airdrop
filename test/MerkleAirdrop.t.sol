@@ -26,19 +26,21 @@ contract MerkelAirdropTest is ZkSyncChainChecker, Test {
         if (!isZkSyncChain()) {
             //deploy with script
             DeployMerkleAirdrop deployer = new DeployMerkleAirdrop();
+            console.log("We are in EVM chain");
             (airdrop, token) = deployer.run();
         } else {
             token = new BagelToken();
             airdrop = new MerkleAirdrop(ROOT, token);
             token.mint(token.owner(), AMOUNT_TO_SEND);
             token.transfer(address(airdrop), AMOUNT_TO_SEND);
+            console.log("We are in zksync chain");
         }
         (user, userPrivKey) = makeAddrAndKey("user");
         gasPayer = makeAddr("gasPayer");
+        // console.log("user address", user);
     }
 
     function testUserCanClaim() public {
-        // console.log("user address", user);
         uint256 startingBalance = token.balanceOf(user);
         bytes32 digest = airdrop.getMessageHash(user, AMOUNT_TO_CLAIM);
 
