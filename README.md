@@ -1,5 +1,3 @@
-``
-
 # Merkle Airdrop Protocol
 
 This project delves into the concept of Merkle airdrops, developing a system that enables users to claim airdrops without incurring gas fees. It allows protocol owners to distribute tokens seamlessly, covering the gas costs on behalf of the users. The project also integrates zkSync, providing compatibility with both standard EVM chains and the zkSync network, enhancing usability and efficiency.
